@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const insulter = require('insult');
-const util = require('./util.js')
+const util = require('./util.js');
+const rollDie = require('./roll.js');
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -33,6 +34,7 @@ client.on('message', msg => {
                 case 'roll':
                     try {
                         msg.channel.send('Rolling die...');
+                        msg.channel.send(rollDie.Roll(args));
                     } catch (err) {
                         console.log(err);
                         msg.reply('Something went wrong with command !' + args[0]);

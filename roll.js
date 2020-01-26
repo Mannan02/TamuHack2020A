@@ -1,30 +1,39 @@
-function Roll(args) {
+exports.Roll = (args) => {
     var mods;
-    var randRoll;
-    var score;
+    var score = 0;
+
+    var qty;
+    var die;
 
     try {
         if (args.length <= 1) {
             throw e;
         }
         else {
-            const dieRoll = params.split('d');
-            if (dieroll.length != 2) {
+            console.log("stub1");
+            const dieRoll = args[1].split('d');
+            console.log(dieRoll);
+            if (dieRoll.length != 2) {
                 throw e;
             }
             else {
-                var qty = dieRoll[0];
-                var die = dieRoll[1];
+                console.log("stub2");
+                qty = dieRoll[0];
+                die = dieRoll[1];
             }
         }
     }
     catch (e) {
-        score.toString("FAILED >:(");
+        return "FAILED >:(";
     }
-    var randRoll = Math.floor((Math.random() * die ) + 1);
     
-    var mods = 0;
+    for (var i = 0; i < qty; i++) {
+        score += Math.floor((Math.random() * die) + 1);
+    }
+    console.log("stub3");
+    mods = 0;
 
-    var score = ((qty * die) + mods);
-    return(score);
+    score += mods;
+
+    return score.toString();
 }
