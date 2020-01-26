@@ -18,6 +18,12 @@ client.on('guildMemberAdd', member => {
     // Do nothing if the channel wasn't found on this server
     if (!channel) {
         console.log('member-log channel missing');
+        console.log('creating channel');
+
+        member.guild.createChannel('member-log').then(channel => {
+            channel.setTopic('Greetings channel for newcomers')
+        });
+
         return;
     }
 
