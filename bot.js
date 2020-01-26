@@ -4,6 +4,13 @@ const insulter = require('insult');
 const util = require('./util.js');
 const rollDie = require('./roll.js');
 const welcomes = require('./welcome.js');
+
+someBackSlaps = [
+    "You would be the kind of person who eats the last slice of pizza",
+    "You would be the kind of person who puts pinapple on pizza",
+    "You would be the kind of person who cuts their pizza in squares"
+]
+
 lastInsult = 0;
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);

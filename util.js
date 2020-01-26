@@ -5,7 +5,11 @@ API_KEY = process.env.API_KEY;
 DISCOVERY_URL = 'https://commentanalyzer.googleapis.com/$discovery/rest?version=v1alpha1';
 url = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze' +
     '?key=' + API_KEY
-
+myArray = [
+    "You would be the kind of person who eats the last slice of pizza",
+    "You would be the kind of person who puts pinapple on pizza",
+    "You would be the kind of person who cuts their pizza in squares"
+]
 exports.insultMe = () => insulter.Insult();
 
 exports.shakespereInsult = () => shakespereInsulter.random();
@@ -34,7 +38,7 @@ exports.isInsult = (msg) => {
             msg.reply(insulter.Insult())
         } else {
 
-            msg.reply("You call that an insult???")
+            msg.reply("You call that an insult. " + myArray[Math.floor(Math.random() * myArray.length)])
         }
     });
 }
