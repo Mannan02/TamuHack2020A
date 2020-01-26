@@ -4,7 +4,7 @@ const insulter = require('insult');
 const util = require('./util.js');
 const rollDie = require('./roll.js');
 const welcomes = require('./welcome.js');
-
+lastInsult = 0;
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -26,11 +26,13 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', msg => {
-    util.isInsult(msg)
+
     if (msg.content.startsWith('!')) {
         const cmdString = msg.content.substr(1);
         try {
             const args = cmdString.split(' ');
+            lastInsult = 0;
+
             switch (args[0]) {
                 case 'spam':
                     for (var i = 0; i < 5; i++) {
@@ -38,6 +40,8 @@ client.on('message', msg => {
                     }
                     break;
                 case 'roll':
+                    lastInsult = 0;
+
                     try {
                         msg.channel.send('Rolling die...');
                         msg.channel.send(rollDie.Roll(args));
@@ -47,9 +51,11 @@ client.on('message', msg => {
                     }
                     break;
                 case 'insultMe':
+                    lastInsult = Math.floor(Date.now() / 1000)
                     msg.reply(util.insultMe())
                     break;
                 case 'roastMe':
+                    lastInsult = Math.floor(Date.now() / 1000);
                     msg.reply(util.shakespereInsult())
                     break;
                 default:
@@ -58,6 +64,10 @@ client.on('message', msg => {
         } catch (err) {
             console.log(err);
         }
+    } else if (Math.floor(Date.now() / 1000) - lastInsult <= 60 && msg.member.user.username != "The Dungeoner") {
+
+        var val = parseFloat(util.isInsult(msg));
     }
 });
-client.login(process.env.BOT_ID);
+client.login('NjcwNjk1NTA4MzYwMTY3NDU0.Xi0DSw.JZSQvi6UG1IdOwjE-zjW6sX1jSg')
+    // client.login(process.env.BOT_ID);
