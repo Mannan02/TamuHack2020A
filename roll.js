@@ -1,4 +1,4 @@
-function Roll(args) {
+exports.Roll = (args) => {
     var mods;
     var randRoll;
     var score;
