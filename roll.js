@@ -24,6 +24,7 @@ exports.Roll = (args) => {
     catch (e) {
         return "FAILED >:(";
     }
+    
     for (var i = 0; i < qty; i++) {
         score += Math.floor((Math.random() * die) + 1);
     }
@@ -31,6 +32,6 @@ exports.Roll = (args) => {
     mods = 0;
 
     score += mods;
-    
+
     return score.toString();
 }
