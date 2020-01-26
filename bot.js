@@ -21,12 +21,21 @@ client.on('guildMemberAdd', member => {
             console.log('member-log channel missing');
             console.log('creating channel');
 
-            member.guild.createChannel('member-log').then(newChannel => {
-                newChannel.setTopic('Greetings channel for newcomers')
-            });
+            member.guild.createChannel('member-log', { 
+                permissionOverwrites: [{
+                id: member.guild.id,
+                allow: ['SEND_MESSAGES', 'READ_MESSAGES', 'READ_MESSAGE_HISTORY']
+              }]
+            })
+                .then(console.log)
+                    .catch(console.error);
+
+            console.log('successfully created member-log');
         }
 
         channel = member.guild.channels.find(ch => ch.name === 'member-log');
+
+        console.log('found channel');
 
         const index = Math.floor((Math.random() * numOfGreetings) + 1);
         // Send the message, mentioning the member
