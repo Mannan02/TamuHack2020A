@@ -12,7 +12,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', async (member) => {
     try {
         // Send the message to a designated channel on a server:
         var channel = member.guild.channels.find(ch => ch.name === 'member-log');
@@ -21,21 +21,19 @@ client.on('guildMemberAdd', member => {
             console.log('member-log channel missing');
             console.log('creating channel');
 
-            member.guild.createChannel('member-log', { 
+            await member.guild.createChannel('member-log', { 
+                type: 'text',
                 permissionOverwrites: [{
-                id: member.guild.id,
-                allow: ['SEND_MESSAGES', 'READ_MESSAGES', 'READ_MESSAGE_HISTORY']
+                    id: member.guild.id,
+                    deny: [],
+                    allow: ['SEND_MESSAGES','READ_MESSAGE_HISTORY','READ_MESSAGES','ADD_REACTIONS','SEND_TTS_MESSAGES']
               }]
             })
                 .then(console.log)
                     .catch(console.error);
-
-            console.log('successfully created member-log');
         }
 
         channel = member.guild.channels.find(ch => ch.name === 'member-log');
-
-        console.log('found channel');
 
         const index = Math.floor((Math.random() * numOfGreetings) + 1);
         // Send the message, mentioning the member
@@ -43,6 +41,7 @@ client.on('guildMemberAdd', member => {
     }
     catch(e) {
         console.log('error in greeting newcomers');
+        console.log(e);
     }
 });
 
