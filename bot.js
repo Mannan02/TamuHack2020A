@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const insulter = require('insult');
 const util = require('./util.js');
 const rollDie = require('./roll.js');
+const welcomes = require('./welcome.json');
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -15,8 +17,9 @@ client.on('guildMemberAdd', member => {
         console.log('member-log channel missing');
         return;
     }
+    console.log(welcomes);
     // Send the message, mentioning the member
-    channel.send(`Welcome to the server, ${member}`);
+    channel.send("Welcome to the server, " + member);
 });
 
 client.on('message', msg => {
