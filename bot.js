@@ -15,18 +15,18 @@ client.on('ready', () => {
 client.on('guildMemberAdd', member => {
     try {
         // Send the message to a designated channel on a server:
-        const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+        var channel = member.guild.channels.find(ch => ch.name === 'member-log');
         // Do nothing if the channel wasn't found on this server
         if (!channel) {
             console.log('member-log channel missing');
             console.log('creating channel');
 
-            member.guild.createChannel('member-log').then(channel => {
-                channel.setTopic('Greetings channel for newcomers')
+            member.guild.createChannel('member-log').then(newChannel => {
+                newChannel.setTopic('Greetings channel for newcomers')
             });
         }
 
-        const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+        channel = member.guild.channels.find(ch => ch.name === 'member-log');
 
         const index = Math.floor((Math.random() * numOfGreetings) + 1);
         // Send the message, mentioning the member
@@ -50,24 +50,24 @@ client.on('message', msg => {
                     msg.channel.send(welcomes.welcomings()[index] + msg.member);
                     break;
                 case 'spam':
-                    const user = message.mentions.users.first();
+                    const user = msg.mentions.users.first();
                     if (user) {
                         // Now we get the member from the user
-                        const member = message.guild.member(user);
+                        const member = msg.guild.member(user);
                         // If the member is in the guild
                         if (member) {
                             for (var i = 0; i < 5; i++) {
-                                msg.channel.send(user.tag);
+                                msg.channel.send(member + "!");
                             }
                         } 
                         else {
                           // The mentioned user isn't in this guild
-                          message.reply('That user doesn\'t exist!');
+                          msg.reply('That user doesn\'t exist!');
                         }
                     // Otherwise, if no user was mentioned
                     } 
                     else {
-                        message.reply('You didn\'t mention a user!');
+                        msg.reply('You didn\'t mention a user!');
                     }
                     break;
                 case 'roll':
