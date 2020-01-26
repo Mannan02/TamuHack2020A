@@ -1,46 +1,72 @@
 exports.Roll = (args) => {
     var cap = 100;
-    var diceRoll = '';
+    var condition = '';
+    var diceRoll = 0;
+    var diceRoll2 = 0;
     var die = 0;
-    var diePlus;
     var mods = 0;
     var qty = 0;
+    var rand = Math.random();
+    var re1 = 'd';
+    var re2 = '+';
     var score = 0;
 
+    for (i in args) {
+        condition += i[];
+    }
+    console.log(condition);
+    //~ Filter for the quantity of dice to roll, the type of dice being rolled,
+    //~ and looks for any modifiers.
     try {
-        //filter for the quantity of dice to roll and the type of dice being rolled
-        if (args.length <= 1) { throw 1; }
-        else {
-            dieRoll = args[1].split('d');
-            if (dieRoll.length != 2) { throw 1; }
-            else {
-                qty = dieRoll[0];
-                diePlus = dieRoll[1].split('+');
-                die = diePlus[0];
-
-                if ((qty.isNan()) || (qty.isNan()) || (qty < -cap)
-                || (qty > cap) || (die < -cap) || (die > cap)) {
-                    throw 2;
-                }
-            }
+        console.log('1');
+        //! Throw error if dice quantity is out of bounds.
+        if ((args.length < 2 || args.length > 3)) { throw 1; }
+        console.log('2');
+        if (condition.includes(re1) && !condition.includes(re2)) {
+            diceRoll = condition[1].split(condition);
+            console.log('3');
+            //! Throw error if dice quantity is out of bounds.
+            if (diceRoll.length != 2) { throw 1; }
+            console.log('4');
+            qty = diceRoll[0];
+            die = diceRoll[1];
+            console.log('5');
+            console.log('6');
+        }
+        else if (condition.includes(re1) && condition.includes(re2)) {
+            diceRoll = condition[1].split(re1);
+            //! Throw error if dice quantity is out of bounds.
+            if(diceRoll.length != 2) { throw 1; }
+            console.log('7');
+            qty = diceRoll[0];
+            diceRoll2 = diceRoll[1];
+            console.log('8');
+            console.log(qty);
+            diceRoll = diceRoll2[1].split(re2);
+            //! Throw error if dice quantity is out of bounds.
+            if(diceRoll.length != 2) { throw 1; }
+            console.log('10');
+            die = diceRoll2[0];
+            mods = diceRoll2[1];
+            console.log('11');
+            console.log(mods+12);
         }
 
-        //check if any modifiers are being applied
-        dieRoll = args[1].split('+');
-        if (dieRoll.length == 2) {
-            mods =  diePlus[1];
-        }
-        else {
-            if ((mods.isNan()) || (mods < -cap) || (mods > cap)) { throw 3; }
+        //! Throw error if the dice rolls are out of bounds.
+        if ((qty.isNan()) || (qty < -cap) || (qty > cap)
+        || (die.isNan()) || (die < -cap) || (die > cap)
+        || (mods.isNan()) || (mods < -cap) || (mods > cap)) {
+            throw 2;
         }
         
-        //determine the score
+        //~ Determine the score
         for (var i = 0; i < qty; i++) {
-            score += Math.floor((Math.random() * die) + 1);
+            score += Math.floor((rand * die) + 1);
         }
         score += mods;
     }
     catch (e) {
+        score.toString();
         switch(e) {
             case 1:
                 score = "The dice fell off the table... try again";
@@ -48,16 +74,10 @@ exports.Roll = (args) => {
             case 2:
                 score = "Hey, those dice are illegal!";
                 break;
-            case 3:
-                score = "Those modifiers are a definately a bluff... try again";
-                break;
-            case 4:
-                score = "The dice fell off the table... again... try again";
-                break;
             default:
                 "Sorry, missed that. What happened?";
         }
     }
 
-    return score.toString();
+    return score;
 }
