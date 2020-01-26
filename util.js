@@ -37,7 +37,6 @@ exports.isInsult = (msg) => {
         if (val > 0.5) {
             msg.reply(insulter.Insult())
         } else {
-
             msg.reply("You call that an insult. " + myArray[Math.floor(Math.random() * myArray.length)])
         }
     });
