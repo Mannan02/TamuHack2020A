@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const insulter = require('insult');
 const util = require('./util.js');
 const rollDie = require('./roll.js');
 const welcomes = require('./welcome.js');
 
+const numOfGreetings = 19;
 
 
 lastInsult = 0;
@@ -21,8 +21,7 @@ client.on('guildMemberAdd', member => {
         return;
     }
 
-    const numOfMsgs = 19;
-    const index = Math.floor((Math.random() * numOfMsgs) + 1);
+    const index = Math.floor((Math.random() * numOfGreetings) + 1);
     // Send the message, mentioning the member
     channel.send(welcomes.welcomings()[index] + member);
 });
@@ -35,9 +34,13 @@ client.on('message', msg => {
             lastInsult = 0;
 
             switch (args[0]) {
+                case 'greetings':
+                    const index = Math.floor((Math.random() * numOfGreetings) + 1);
+                    msg.reply();
+                    break;
                 case 'spam':
                     for (var i = 0; i < 5; i++) {
-                        msg.reply('');
+                        msg.channel.send(welcomes.welcomings()[index] + msg.member);
                     }
                     break;
                 case 'roll':
