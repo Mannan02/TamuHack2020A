@@ -1,3 +1,3 @@
 const insulter = require('insult');
 
-insultMe => insulter.Insult();
+exports.insultMe = () => insulter.Insult();
