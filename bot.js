@@ -62,7 +62,7 @@ client.on('message', msg => {
         } catch (err) {
             console.log(err);
         }
-    } else if (Math.floor(Date.now() / 1000) - lastInsult <= 60 && msg.member.user.username != "The Dungeoner") {
+    } else if (Math.floor(Date.now() / 1000) - lastInsult <= 60 && msg.isMemberMentioned(client.user)) {
 
         parseFloat(util.isInsult(msg));
     }
