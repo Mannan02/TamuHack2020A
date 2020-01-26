@@ -20,9 +20,8 @@ client.on('guildMemberAdd', member => {
 
     const numOfMsgs = 19;
     const index = Math.floor((Math.random() * numOfMsgs) + 1);
-    console.log(welcomes);
     // Send the message, mentioning the member
-    channel.send(welcomes[index] + member);
+    channel.send(welcomes.welcomings()[index] + member);
 });
 
 client.on('message', msg => {
