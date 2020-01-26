@@ -21,10 +21,10 @@ exports.Roll = (args) => {
     catch (e) {
         score.toString("FAILED >:(");
     }
-    var randRoll = Math.floor((Math.random() * die ) + 1);
+    randRoll = Math.floor((Math.random() * die ) + 1);
     
-    var mods = 0;
+    mods = 0;
 
-    var score = ((qty * die) + mods);
+    score = ((qty * randRoll) + mods);
     return(score);
 }
