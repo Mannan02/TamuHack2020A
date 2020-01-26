@@ -23,6 +23,7 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', msg => {
+    //util.isInsult(msg)
     if (msg.content.startsWith('!')) {
         const cmdString = msg.content.substr(1);
         try {
