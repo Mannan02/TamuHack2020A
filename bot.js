@@ -13,23 +13,28 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
-    // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.find(ch => ch.name === 'member-log');
-    // Do nothing if the channel wasn't found on this server
-    if (!channel) {
-        console.log('member-log channel missing');
-        console.log('creating channel');
+    try {
+        // Send the message to a designated channel on a server:
+        const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+        // Do nothing if the channel wasn't found on this server
+        if (!channel) {
+            console.log('member-log channel missing');
+            console.log('creating channel');
 
-        member.guild.createChannel('member-log').then(channel => {
-            channel.setTopic('Greetings channel for newcomers')
-        });
+            member.guild.createChannel('member-log').then(channel => {
+                channel.setTopic('Greetings channel for newcomers')
+            });
+        }
+
+        const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+
+        const index = Math.floor((Math.random() * numOfGreetings) + 1);
+        // Send the message, mentioning the member
+        channel.send(welcomes.welcomings()[index] + member);
     }
-
-    const channel = member.guild.channels.find(ch => ch.name === 'member-log');
-
-    const index = Math.floor((Math.random() * numOfGreetings) + 1);
-    // Send the message, mentioning the member
-    channel.send(welcomes.welcomings()[index] + member);
+    catch(e) {
+        console.log('error in greeting newcomers');
+    }
 });
 
 client.on('message', msg => {
