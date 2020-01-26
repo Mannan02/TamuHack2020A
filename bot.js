@@ -20,13 +20,11 @@ client.on('guildMemberAdd', member => {
 
     const numOfMsgs = 19;
     const index = Math.floor((Math.random() * numOfMsgs) + 1);
-    console.log(welcomes);
     // Send the message, mentioning the member
-    channel.send(welcomes[index] + member);
+    channel.send(welcomes.welcomings()[index] + member);
 });
 
 client.on('message', msg => {
-
     if (msg.content.startsWith('!')) {
         const cmdString = msg.content.substr(1);
         try {
@@ -66,8 +64,7 @@ client.on('message', msg => {
         }
     } else if (Math.floor(Date.now() / 1000) - lastInsult <= 60 && msg.member.user.username != "The Dungeoner") {
 
-        var val = parseFloat(util.isInsult(msg));
+        parseFloat(util.isInsult(msg));
     }
 });
-client.login('NjcwNjk1NTA4MzYwMTY3NDU0.Xi0DSw.JZSQvi6UG1IdOwjE-zjW6sX1jSg')
-    // client.login(process.env.BOT_ID);
+client.login(process.env.BOT_ID);

@@ -1,8 +1,7 @@
 const insulter = require('insult');
 const shakespereInsulter = require('shakespeare-insult1.1.0')
 var request = require('request');
-//API_KEY = process.env.API_KEY;
-API_KEY = "AIzaSyC-4idTaVkLQouw6FYOOZ9T1Dn01l69sgU";
+API_KEY = process.env.API_KEY;
 DISCOVERY_URL = 'https://commentanalyzer.googleapis.com/$discovery/rest?version=v1alpha1';
 url = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze' +
     '?key=' + API_KEY
