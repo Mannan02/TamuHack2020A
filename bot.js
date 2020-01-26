@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const insulter = require('insult');
 const util = require('./util.js');
 const rollDie = require('./roll.js');
-const welcomes = require('./welcome.json');
+const welcomes = require('./welcome.js');
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -18,13 +18,11 @@ client.on('guildMemberAdd', member => {
         return;
     }
     
-    console.log(welcomes);
     const numOfMsgs = 19;
     const index = Math.floor((Math.random() * numOfMsgs) + 1);
-    const welcomesObj = JSON.parse(welcomes);
-    console.log(welcomesObj);
+    console.log(welcomes);
     // Send the message, mentioning the member
-    channel.send("Welcome to the server, " + member);
+    channel.send(welcomes[index] + member);
 });
 
 client.on('message', msg => {
