@@ -36,11 +36,11 @@ client.on('message', msg => {
             switch (args[0]) {
                 case 'greetings':
                     const index = Math.floor((Math.random() * numOfGreetings) + 1);
-                    msg.reply();
+                    msg.channel.send(welcomes.welcomings()[index] + msg.member);
                     break;
                 case 'spam':
                     for (var i = 0; i < 5; i++) {
-                        msg.channel.send(welcomes.welcomings()[index] + msg.member);
+                        
                     }
                     break;
                 case 'roll':
