@@ -39,8 +39,24 @@ client.on('message', msg => {
                     msg.channel.send(welcomes.welcomings()[index] + msg.member);
                     break;
                 case 'spam':
-                    for (var i = 0; i < 5; i++) {
-                        
+                    const user = message.mentions.users.first();
+                    if (user) {
+                        // Now we get the member from the user
+                        const member = message.guild.member(user);
+                        // If the member is in the guild
+                        if (member) {
+                            for (var i = 0; i < 5; i++) {
+                                msg.channel.send(user.tag);
+                            }
+                        } 
+                        else {
+                          // The mentioned user isn't in this guild
+                          message.reply('That user doesn\'t exist!');
+                        }
+                    // Otherwise, if no user was mentioned
+                    } 
+                    else {
+                        message.reply('You didn\'t mention a user!');
                     }
                     break;
                 case 'roll':
