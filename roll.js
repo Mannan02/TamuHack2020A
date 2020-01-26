@@ -1,7 +1,10 @@
 exports.Roll = (args) => {
     var mods;
     var randRoll;
-    var score;
+    var score = 0;
+
+    var qty;
+    var die;
 
     try {
         if (args.length <= 1) {
@@ -13,18 +16,21 @@ exports.Roll = (args) => {
                 throw e;
             }
             else {
-                var qty = dieRoll[0];
-                var die = dieRoll[1];
+                qty = dieRoll[0];
+                die = dieRoll[1];
             }
         }
     }
     catch (e) {
-        score.toString("FAILED >:(");
+        return "FAILED >:(";
     }
-    randRoll = Math.floor((Math.random() * die ) + 1);
-    
+    for (var i = 0; i < qty; i++) {
+        score += Math.floor((Math.random() * die) + 1);
+    }
+
     mods = 0;
 
-    score = ((qty * randRoll) + mods);
-    return(score);
+    score += mods;
+    
+    return score.toString();
 }
