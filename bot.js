@@ -17,7 +17,12 @@ client.on('guildMemberAdd', member => {
         console.log('member-log channel missing');
         return;
     }
+    
     console.log(welcomes);
+    const numOfMsgs = 19;
+    const index = Math.floor((Math.random() * numOfMsgs) + 1);
+    const welcomesObj = JSON.parse(welcomes);
+    console.log(welcomesObj);
     // Send the message, mentioning the member
     channel.send("Welcome to the server, " + member);
 });
