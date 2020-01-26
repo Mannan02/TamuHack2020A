@@ -8,9 +8,10 @@
     },
     "dependencies": {
         "discord.js": "^11.5.1",
-        "googleapis": "^47.0.0",
+        "express": "^4.17.1",
         "insult": "0.0.3",
-        "request": "2.81.0",
+        "json": "^9.0.6",
+        "request": "^2.81.0",
         "shakespeare-insult1.1.0": "^1.2.1"
     }
 }
