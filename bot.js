@@ -40,6 +40,8 @@ client.on('message', msg => {
                 case 'insultMe':
                     msg.reply(util.insultMe())
                     break;
+                case 'roastMe':
+                    msg.reply(util.shakespereInsult())
                 default:
                     msg.reply('?');
             }
