@@ -6,8 +6,33 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('Pong!');
+    if (msg.content.startsWith('!')) {
+        const cmdString = msg.content.substr(1);
+        try {
+            const args = cmdString.split(' ');
+            switch (args[0]) {
+                case 'ping':
+                    msg.reply('Pong!');
+                    break;
+                case 'spam':
+                    for (var i = 0; i < 20; i++) {
+                        msg.reply('');
+                    }
+                    break;
+                case 'roll':
+                    try {
+                        msg.channel.send('Rolling die...');
+                    } catch (err) {
+                        console.log(err);
+                        msg.reply('Something went wrong with command !' + args[0]);
+                    }
+                    break;
+                default:
+                    msg.reply('?');
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 });
 client.login(process.env.BOT_ID);
