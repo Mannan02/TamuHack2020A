@@ -29,7 +29,7 @@ client.on('message', msg => {
                     }
                     break;
                 case 'insultMe':
-                    msg.reply(util.insultMe())
+                    msg.reply(insulter.Insult())
                     break;
                 default:
                     msg.reply('?');
