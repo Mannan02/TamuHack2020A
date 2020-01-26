@@ -59,6 +59,16 @@ client.on('message', msg => {
                     lastInsult = Math.floor(Date.now() / 1000);
                     msg.reply(util.shakespereInsult())
                     break;
+                case 'Gartner':
+                    lastInsult = 0;
+                    msg.reply(util.gimmeTheDub())
+                    msg.channel.send({
+                        embed: {
+                            image: {
+                                url: "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjZyM_hw6HnAhUHDKwKHYXvD2AQjRx6BAgBEAQ&url=%2Furl%3Fsa%3Di%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dimages%26cd%3D%26ved%3D2ahUKEwiQwKLfw6HnAhUKWqwKHWC0CR4QjRx6BAgBEAQ%26url%3Dhttps%253A%252F%252Fgiphy.com%252Fexplore%252Fbutter%26psig%3DAOvVaw1JHfBxAsUHE4j_Y4Q2nWMs%26ust%3D1580137100757284&psig=AOvVaw1JHfBxAsUHE4j_Y4Q2nWMs&ust=1580137100757284"
+                            }
+                        }
+                    })
                 default:
                     msg.reply('?');
             }
