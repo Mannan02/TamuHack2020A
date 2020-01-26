@@ -1,4 +1,4 @@
-exports.welcomings = () => [
+exports.welcomings = () => { return [
     "Greetings, ",
     "How do you do, pretty lady? ",
     "How fare ye? ",
@@ -18,4 +18,5 @@ exports.welcomings = () => [
     "Hell must hath frozen over for thou to be standing before me ",
     "Peace be upon you ",
     "M'lady "
-]
+    ];
+}
