@@ -65,7 +65,7 @@ client.on('message', msg => {
                     msg.channel.send({
                         embed: {
                             image: {
-                                url: "https://media.giphy.com/media/7NUR5Qvr93ed8T2dsG/giphy.gif"
+                                url: "https://media.giphy.com/media/SNGBqe0HcKgs8/giphy.gif"
                             }
                         }
                     })
