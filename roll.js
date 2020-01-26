@@ -2,6 +2,7 @@ exports.Roll = (args) => {
     var cap = 100;
     var diceRoll = '';
     var die = 0;
+    var diePlus;
     var mods = 0;
     var qty = 0;
     var score = 0;
@@ -14,7 +15,9 @@ exports.Roll = (args) => {
             if (dieRoll.length != 2) { throw 1; }
             else {
                 qty = dieRoll[0];
-                die = dieRoll[1];
+                diePlus = dieRoll[1].split('+');
+                die = diePlus[0];
+
                 if ((qty.isNan()) || (qty.isNan()) || (qty < -cap)
                 || (qty > cap) || (die < -cap) || (die > cap)) {
                     throw 2;
@@ -24,9 +27,10 @@ exports.Roll = (args) => {
 
         //check if any modifiers are being applied
         dieRoll = args[1].split('+');
-        if (dieRoll.length != 2) { throw 4; }
+        if (dieRoll.length == 2) {
+            mods =  diePlus[1];
+        }
         else {
-            mods = dieRoll[1];
             if ((mods.isNan()) || (mods < -cap) || (mods > cap)) { throw 3; }
         }
         
