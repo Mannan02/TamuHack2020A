@@ -17,7 +17,7 @@ client.on('guildMemberAdd', member => {
         console.log('member-log channel missing');
         return;
     }
-    
+
     const numOfMsgs = 19;
     const index = Math.floor((Math.random() * numOfMsgs) + 1);
     console.log(welcomes);
@@ -26,7 +26,7 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('message', msg => {
-    //util.isInsult(msg)
+    util.isInsult(msg)
     if (msg.content.startsWith('!')) {
         const cmdString = msg.content.substr(1);
         try {
