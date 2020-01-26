@@ -23,9 +23,9 @@ client.on('guildMemberAdd', member => {
         member.guild.createChannel('member-log').then(channel => {
             channel.setTopic('Greetings channel for newcomers')
         });
-
-        return;
     }
+
+    const channel = member.guild.channels.find(ch => ch.name === 'member-log');
 
     const index = Math.floor((Math.random() * numOfGreetings) + 1);
     // Send the message, mentioning the member
