@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
+const insulter = require('insult');
+const util = require('./util.js')
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -15,7 +16,7 @@ client.on('guildMemberAdd', member => {
     }
     // Send the message, mentioning the member
     channel.send(`Welcome to the server, ${member}`);
-  });
+});
 
 client.on('message', msg => {
     if (msg.content.startsWith('!')) {
@@ -36,6 +37,11 @@ client.on('message', msg => {
                         msg.reply('Something went wrong with command !' + args[0]);
                     }
                     break;
+                case 'insultMe':
+                    msg.reply(util.insultMe())
+                    break;
+                case 'roastMe':
+                    msg.reply(util.shakespereInsult())
                 default:
                     msg.reply('?');
             }
