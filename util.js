@@ -14,6 +14,8 @@ exports.insultMe = () => insulter.Insult();
 
 exports.shakespereInsult = () => shakespereInsulter.random();
 
+exports.gimmeTheDub = () => "Oh Gartner, How great art thou"
+
 exports.isInsult = (msg) => {
     data_dict = {
         'comment': { 'text': msg.content },

@@ -62,6 +62,17 @@ client.on('message', msg => {
                     lastInsult = Math.floor(Date.now() / 1000);
                     msg.reply(util.shakespereInsult())
                     break;
+                case 'Gartner':
+                    lastInsult = 0;
+                    msg.reply(util.gimmeTheDub())
+                    msg.channel.send({
+                        embed: {
+                            image: {
+                                url: "https://media.giphy.com/media/SNGBqe0HcKgs8/giphy.gif"
+                            }
+                        }
+                    })
+                    break;
                 default:
                     msg.reply('?');
             }
