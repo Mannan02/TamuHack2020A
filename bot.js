@@ -16,7 +16,7 @@ client.on('guildMemberAdd', member => {
     }
     // Send the message, mentioning the member
     channel.send(`Welcome to the server, ${member}`);
-  });
+});
 
 client.on('message', msg => {
     if (msg.content.startsWith('!')) {
@@ -38,7 +38,7 @@ client.on('message', msg => {
                     }
                     break;
                 case 'insultMe':
-                    msg.reply(insulter.Insult())
+                    msg.reply(util.insultMe())
                     break;
                 default:
                     msg.reply('?');
